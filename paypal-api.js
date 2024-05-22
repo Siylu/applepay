@@ -9,7 +9,7 @@ const base = "https://api-m.paypal.com";
 
 // call the create order method
 export async function createOrder() {
-  const purchaseAmount = "10.00"; // TODO: pull prices from a database
+  const purchaseAmount = "0.01"; // TODO: pull prices from a database
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders`;
   const response = await fetch(url, {
