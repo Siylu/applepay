@@ -36,7 +36,7 @@ async function setupApplepay() {
       ],
       total: {
         label: "Demo (Card is not charged)",
-        amount: "10.00",
+        amount: "0.01",
         type: "final",
       },
     };
