@@ -9,6 +9,7 @@ async function setupApplepay() {
       supportedNetworks,
     } = await  applepay.config();
 
+
   if (!isEligible) {
     throw new Error("applepay is not eligible");
   }
@@ -22,7 +23,7 @@ async function setupApplepay() {
     console.log({ merchantCapabilities, currencyCode, supportedNetworks })
 
     const paymentRequest = {
-      countryCode,
+      countryCode:'CN',
       currencyCode: 'USD',
       merchantCapabilities,
       supportedNetworks,
