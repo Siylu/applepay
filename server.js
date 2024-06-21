@@ -26,6 +26,7 @@ app.post("/api/orders", async (req, res) => {
   try {
     const order = await paypal.createOrder();
     res.json(order);
+    console.log(order);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -37,6 +38,7 @@ app.post("/api/orders/:orderID/capture", async (req, res) => {
   try {
     const captureData = await paypal.capturePayment(orderID);
     res.json(captureData);
+    console.log(captureData);
   } catch (err) {
     res.status(500).send(err.message);
   }
