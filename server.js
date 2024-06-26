@@ -23,6 +23,7 @@ app.get("/", async (req, res) => {
 
 // create order
 app.post("/api/orders", async (req, res) => {
+  console.log(req);
   try {
     const order = await paypal.createOrder();
     res.json(order);
