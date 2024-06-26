@@ -26,9 +26,6 @@ export async function createOrder() {
           amount: {
             currency_code: "USD",
             value: purchaseAmount,
-          },
-          payee: {
-            merchant_id: MERCHANT_ID,
           }
         },
       ],
