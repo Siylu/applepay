@@ -17,6 +17,7 @@ export async function createOrder() {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
+      "PayPal-Auth-Assertion":"eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBUnBLbjNrMzc2WUhtRXdlMXpNeHhSaXFWdUcxSmwzWjl5bEp2QkNWMW5sOWxlLXNHOFhqUDlOZkVSRlJQWXFxRW8xRHozVmFFMHB0Y3hHNiIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9Cg==."
     },
     body: JSON.stringify({
       intent: "CAPTURE",
@@ -46,6 +47,7 @@ export async function capturePayment(orderId) {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
+      "PayPal-Auth-Assertion":"eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBUnBLbjNrMzc2WUhtRXdlMXpNeHhSaXFWdUcxSmwzWjl5bEp2QkNWMW5sOWxlLXNHOFhqUDlOZkVSRlJQWXFxRW8xRHozVmFFMHB0Y3hHNiIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9Cg==."
     },
   });
 

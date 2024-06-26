@@ -88,6 +88,7 @@ async function setupApplepay() {
         /*
         * Capture order (must currently be made on server)
         */
+       console.log(event.payment.token,event.payment.billingContact,event.payment.shippingContact)
         await fetch(`/api/orders/${id}/capture`, {
           method: 'POST',
         });
