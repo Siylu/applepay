@@ -9,7 +9,7 @@ const base = "https://api-m.sandbox.paypal.com";
 
 // call the create order method
 export async function createOrder() {
-  const purchaseAmount = "0.01"; // TODO: pull prices from a database
+  const purchaseAmount = "10.00"; // TODO: pull prices from a database
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders`;
   const response = await fetch(url, {
@@ -26,7 +26,20 @@ export async function createOrder() {
           amount: {
             currency_code: "USD",
             value: purchaseAmount,
-          }
+          },
+          shipping: {
+            name: {
+                full_name: "John doc"
+            },
+            address: {
+                address_line_1: "1223",
+                address_line_2: "Floor 6",
+                admin_area_1: "Jilin",
+                admin_area_2: "aa",
+                postal_code: "417122",
+                country_code: "CN"
+            }
+        }
         },
       ],
     }),

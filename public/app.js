@@ -66,6 +66,9 @@ async function setupApplepay() {
     };
 
     session.onpaymentauthorized = async (event) => {
+
+      console.log('Your billing address is:', event.payment.billingContact);
+    console.log('Your shipping address is:', event.payment.shippingContact);
       try {
         /* Create Order on the Server Side */
         const orderResponse = await fetch(`/api/orders`,{
@@ -89,9 +92,9 @@ async function setupApplepay() {
         * Capture order (must currently be made on server)
         */
        console.log(event.payment.token,event.payment.billingContact,event.payment.shippingContact)
-       /* await fetch(`/api/orders/${id}/capture`, {
+       await fetch(`/api/orders/${id}/capture`, {
           method: 'POST',
-        });*/
+        });
 
         session.completePayment({
           status: window.ApplePaySession.STATUS_SUCCESS,
