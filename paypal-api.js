@@ -22,7 +22,7 @@ export async function createOrder(isVault) {
     },
     body: JSON.stringify({
       intent: "CAPTURE",
-      "payment_source": {
+      /*"payment_source": {
         "apple_pay": {
           "stored_credential": {
             "payment_initiator": "CUSTOMER",
@@ -34,7 +34,7 @@ export async function createOrder(isVault) {
             }
           }
         }
-      },
+      },*/
       purchase_units: [
         {
           amount: {
