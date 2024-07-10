@@ -21,7 +21,7 @@ export async function createOrder() {
     },
     body: JSON.stringify({
       intent: "CAPTURE",
-      "payment_source": {
+      /*"payment_source": {
         "apple_pay": {
           "stored_credential": {
             "payment_initiator": "CUSTOMER",
@@ -33,7 +33,7 @@ export async function createOrder() {
             }
           }
         }
-      },
+      },*/
       purchase_units: [
         {
           amount: {
