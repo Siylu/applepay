@@ -1,13 +1,13 @@
 
 async function setupApplepay() {
   const applepay = paypal.Applepay();
-    const {
-      isEligible,
-      countryCode,
-      currencyCode,
-      merchantCapabilities,
-      supportedNetworks,
-    } = await  applepay.config();
+  const {
+    isEligible,
+    countryCode,
+    currencyCode,
+    merchantCapabilities,
+    supportedNetworks,
+  } = await applepay.config();
 
 
   if (!isEligible) {
@@ -23,7 +23,7 @@ async function setupApplepay() {
     console.log({ merchantCapabilities, currencyCode, supportedNetworks })
 
     const paymentRequest = {
-      countryCode:'CN',
+      countryCode: 'CN',
       currencyCode: 'USD',
       merchantCapabilities,
       supportedNetworks,
@@ -44,7 +44,7 @@ async function setupApplepay() {
 
     // eslint-disable-next-line no-undef
     let session = new ApplePaySession(4, paymentRequest);
-
+    console.log("[1] Session Create")
     session.onvalidatemerchant = (event) => {
       applepay
         .validateMerchant({
@@ -58,27 +58,27 @@ async function setupApplepay() {
           session.abort();
         });
     };
-
+    console.log("[1] Merchant Validate Complete")
     session.onpaymentmethodselected = () => {
       session.completePaymentMethodSelection({
         newTotal: paymentRequest.total,
       });
     };
-
+    console.log("[1]")
     session.onpaymentauthorized = async (event) => {
 
       console.log('Your billing address is:', event.payment.billingContact);
-    console.log('Your shipping address is:', event.payment.shippingContact);
+      console.log('Your shipping address is:', event.payment.shippingContact);
       try {
         /* Create Order on the Server Side */
-        const orderResponse = await fetch(`/api/orders`,{
-          method:'POST',
-          headers : {
+        const orderResponse = await fetch(`/api/orders`, {
+          method: 'POST',
+          headers: {
             'Content-Type': 'application/json'
           }
         })
-        if(!orderResponse.ok) {
-            throw new Error("error creating order")
+        if (!orderResponse.ok) {
+          throw new Error("error creating order")
         }
 
         const { id } = await orderResponse.json()
@@ -86,13 +86,14 @@ async function setupApplepay() {
         /**
          * Confirm Payment 
          */
-        await applepay.confirmOrder({ orderId: id, token: event.payment.token, billingContact: event.payment.billingContact , shippingContact: event.payment.shippingContact });
-
+        debugger;
+        await applepay.confirmOrder({ orderId: id, token: event.payment.token, billingContact: event.payment.billingContact, shippingContact: event.payment.shippingContact });
+        debugger;
         /*
         * Capture order (must currently be made on server)
         */
-       console.log(event.payment.token,event.payment.billingContact,event.payment.shippingContact)
-       await fetch(`/api/orders/${id}/capture`, {
+        console.log(event.payment.token, event.payment.billingContact, event.payment.shippingContact)
+        await fetch(`/api/orders/${id}/capture`, {
           method: 'POST',
         });
 
@@ -107,7 +108,7 @@ async function setupApplepay() {
       }
     };
 
-    session.oncancel  = () => {
+    session.oncancel = () => {
       console.log("Apple Pay Cancelled !!")
     }
 
@@ -118,7 +119,7 @@ async function setupApplepay() {
 document.addEventListener("DOMContentLoaded", () => {
 
   // eslint-disable-next-line no-undef
-  if(ApplePaySession?.supportsVersion(4) && ApplePaySession?.canMakePayments()) {
+  if (ApplePaySession?.supportsVersion(4) && ApplePaySession?.canMakePayments()) {
     setupApplepay().catch(console.error);
   }
 });
