@@ -8,8 +8,9 @@ const { CLIENT_ID, APP_SECRET, MERCHANT_ID } = process.env;
 const base = "https://api-m.sandbox.paypal.com";
 
 // call the create order method
-export async function createOrder() {
+export async function createOrder(isVault) {
   const purchaseAmount = "10.00"; // TODO: pull prices from a database
+
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders`;
   const response = await fetch(url, {
@@ -88,7 +89,7 @@ export async function generateAccessToken() {
       Authorization: `Basic ${auth}`,
     },
   });
-  console.log(response);
+  // console.log(response);
   const jsonData = await handleResponse(response);
   return jsonData.access_token;
 }
