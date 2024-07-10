@@ -17,10 +17,23 @@ export async function createOrder() {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
-      "PayPal-Auth-Assertion":"eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9."
+      "PayPal-Auth-Assertion": "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9."
     },
     body: JSON.stringify({
       intent: "AUTHORIZE",
+      "payment_source": {
+        "apple_pay": {
+          "stored_credential": {
+            "payment_initiator": "CUSTOMER",
+            "payment_type": "RECURRING"
+          },
+          "attributes": {
+            "vault": {
+              "store_in_vault": "ON_SUCCESS"
+            }
+          }
+        }
+      },
       purchase_units: [
         {
           amount: {
@@ -29,22 +42,22 @@ export async function createOrder() {
           },
           shipping: {
             name: {
-                full_name: "John doc"
+              full_name: "John doc"
             },
             address: {
-                address_line_1: "1223",
-                address_line_2: "Floor 6",
-                admin_area_1: "Jilin",
-                admin_area_2: "aa",
-                postal_code: "417122",
-                country_code: "CN"
+              address_line_1: "1223",
+              address_line_2: "Floor 6",
+              admin_area_1: "Jilin",
+              admin_area_2: "aa",
+              postal_code: "417122",
+              country_code: "CN"
             }
-        }
+          }
         },
       ],
     }),
   });
-  
+
   return handleResponse(response);
 }
 
@@ -57,7 +70,7 @@ export async function capturePayment(orderId) {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
-      "PayPal-Auth-Assertion":"eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9."
+      "PayPal-Auth-Assertion": "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9."
     },
   });
 
