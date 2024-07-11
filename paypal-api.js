@@ -22,17 +22,27 @@ export async function createOrder(isVault) {
     },
     body: JSON.stringify({
       intent: "CAPTURE",
+      // "payment_source": {
+      //   "apple_pay": {
+      //     "stored_credential": {
+      //       "payment_initiator": "CUSTOMER",
+      //       "payment_type": "RECURRING"
+      //     },
+      //     "attributes": {
+      //       "vault": {
+      //         "store_in_vault": "ON_SUCCESS"
+      //       }
+      //     }
+      //   }
+      // },
       "payment_source": {
         "apple_pay": {
           "stored_credential": {
-            "payment_initiator": "CUSTOMER",
-            "payment_type": "RECURRING"
+            "payment_initiator": "MERCHANT",
+            "payment_type": "RECURRING",
+            "usage": "SUBSEQUENT",
           },
-          "attributes": {
-            "vault": {
-              "store_in_vault": "ON_SUCCESS"
-            }
-          }
+          "vault_id": "1dy601151h625622v"
         }
       },
       purchase_units: [
