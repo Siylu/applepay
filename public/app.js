@@ -96,11 +96,7 @@ async function setupApplepay() {
                 const textarea1 = document.getElementById(
                     "result-createorder-text"
                 );
-                textarea1.value = JSON.stringify(
-                    createOrderJsonRes,
-                    null,
-                    "  "
-                );
+                textarea1.innerHTML = JSON.stringify(createOrderJsonRes);
                 /**
                  * Confirm Payment
                  */
@@ -126,18 +122,17 @@ async function setupApplepay() {
                     /*
                      * Capture order (must currently be made on server)
                      */
-                    const captureResponse = await fetch(`/api/orders/${id}/capture`, {
-                        method: "POST",
-                    });
+                    const captureResponse = await fetch(
+                        `/api/orders/${id}/capture`,
+                        {
+                            method: "POST",
+                        }
+                    );
                     const captureOrderJsonRes = await captureResponse.json();
                     const textarea2 = document.getElementById(
                         "result-capture-text"
                     );
-                    textarea2.value = JSON.stringify(
-                      captureOrderJsonRes,
-                        null,
-                        "  "
-                    );
+                    textarea2.innerHTML = JSON.stringify(captureOrderJsonRes);
                 }
 
                 session.completePayment({
