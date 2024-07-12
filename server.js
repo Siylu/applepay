@@ -25,9 +25,9 @@ app.get("/", async (req, res) => {
 app.post("/api/orders", async (req, res) => {
   // console.clear();
   // console.log(req.query);
-  const isVault = req.query
+  const isVault = req.query.isVault;
   try {
-    const order = await paypal.createOrder();
+    const order = await paypal.createOrder(isVault);
     res.json(order);
     console.log(order);
   } catch (err) {
