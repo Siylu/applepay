@@ -71,6 +71,8 @@ export async function createOrder(isVault, isReturning) {
     if (eval(isVault)) {
         requestBody["payment_source"] = payment_source;
     }
+
+    
     console.log(JSON.stringify(requestBody, null, "  "));
     const response = await fetch(url, {
         method: "post",

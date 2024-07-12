@@ -29,7 +29,7 @@ app.post("/api/orders", async (req, res) => {
   try {
     const order = await paypal.createOrder(isVault,isReturning);
     res.json(order);
-    console.log(order);
+    console.log(JSON.stringify(order,null,"  "));
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -42,7 +42,8 @@ app.post("/api/orders/:orderID/capture", async (req, res) => {
   try {
     const captureData = await paypal.capturePayment(orderID);
     res.json(captureData);
-    console.log(captureData);
+    console.log(JSON.stringify(captureData,null,"  "));
+   
   } catch (err) {
     res.status(500).send(err.message);
   }
