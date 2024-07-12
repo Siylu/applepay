@@ -66,6 +66,7 @@ async function setupApplepay() {
     };
     console.log("[1]")
     const isVault = document.getElementById("is-vault").checked;
+    const isReturning = document.getElementById("is-returning").checked;
 
     session.onpaymentauthorized = async (event) => {
 
@@ -73,7 +74,7 @@ async function setupApplepay() {
       console.log('Your shipping address is:', event.payment.shippingContact);
       try {
         /* Create Order on the Server Side */
-        const orderResponse = await fetch(`/api/orders?isVault=${isVault}`, {
+        const orderResponse = await fetch(`/api/orders?isVault=${isVault}&isReturning=${isReturning}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

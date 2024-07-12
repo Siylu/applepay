@@ -7,14 +7,41 @@ const { CLIENT_ID, APP_SECRET, MERCHANT_ID } = process.env;
 //const APP_SECRET="EJWU_h3jhQf4_ITipl1U7qbv5bRcRKK5x7QpHpT7_49VI0_BenOtdkjY5NRapo8D7g_PtZWqfsiBA5b7";
 //const MERCHANT_ID="B76W5U9HQVEFY";
 
-const base = "https://api-m.sandbox.paypal.com";
+const base = "https://api.sandbox.paypal.com";
 
 // call the create order method
-export async function createOrder(isVault) {
+export async function createOrder(isVault, isReturning) {
     const purchaseAmount = "10.00"; // TODO: pull prices from a database
 
     const accessToken = await generateAccessToken(isVault);
     const url = `${base}/v2/checkout/orders`;
+
+    const paypal_request_id = `Test=+${Date.now() % 12345678}`;
+
+    const payment_source = eval(isReturning)
+        ? {
+              apple_pay: {
+                  stored_credential: {
+                      payment_initiator: "MERCHANT",
+                      payment_type: "RECURRING",
+                      usage: "SUBSEQUENT",
+                  },
+                  vault_id: "1dy601151h625622v",
+              },
+          }
+        : {
+              apple_pay: {
+                  stored_credential: {
+                      payment_initiator: "CUSTOMER",
+                      payment_type: "RECURRING",
+                  },
+                  attributes: {
+                      vault: {
+                          store_in_vault: "ON_SUCCESS",
+                      },
+                  },
+              },
+          };
 
     const requestBody = {
         intent: "CAPTURE",
@@ -42,19 +69,7 @@ export async function createOrder(isVault) {
     };
 
     if (eval(isVault)) {
-        requestBody["payment_source"] = {
-            apple_pay: {
-                stored_credential: {
-                    payment_initiator: "CUSTOMER",
-                    payment_type: "RECURRING",
-                },
-                attributes: {
-                    vault: {
-                        store_in_vault: "ON_SUCCESS",
-                    },
-                },
-            },
-        };
+        requestBody["payment_source"] = payment_source;
     }
     console.log(JSON.stringify(requestBody, null, "  "));
     const response = await fetch(url, {
@@ -64,6 +79,7 @@ export async function createOrder(isVault) {
             Authorization: `Bearer ${accessToken}`,
             "PayPal-Auth-Assertion":
                 "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9.",
+            "PayPal-Request-Id": paypal_request_id,
         },
         body: JSON.stringify(requestBody),
     });
