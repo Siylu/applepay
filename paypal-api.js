@@ -3,8 +3,7 @@ import fetch from "node-fetch";
 // set some important variables
 const { CLIENT_ID, APP_SECRET, MERCHANT_ID } = process.env;
 
-//const CLIENT_ID="AZKhxEQXmqa55rEt7Oa-sYX57JBVwMIHXf0Mo5-9HIqH33IK8QlbZRmafaTB45htQh4iEO_yTFXCySz_";
-//const APP_SECRET="EJWU_h3jhQf4_ITipl1U7qbv5bRcRKK5x7QpHpT7_49VI0_BenOtdkjY5NRapo8D7g_PtZWqfsiBA5b7";
+
 //const MERCHANT_ID="B76W5U9HQVEFY";
 
 const base = "https://api.sandbox.paypal.com";
@@ -72,7 +71,7 @@ export async function createOrder(isVault, isReturning) {
         requestBody["payment_source"] = payment_source;
     }
 
-    
+
     console.log(JSON.stringify(requestBody, null, "  "));
     const response = await fetch(url, {
         method: "post",
