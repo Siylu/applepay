@@ -3,7 +3,8 @@ import fetch from "node-fetch";
 // set some important variables
 const { CLIENT_ID, APP_SECRET, MERCHANT_ID } = process.env;
 
-
+//const CLIENT_ID="AZKhxEQXmqa55rEt7Oa-sYX57JBVwMIHXf0Mo5-9HIqH33IK8QlbZRmafaTB45htQh4iEO_yTFXCySz_";
+//const APP_SECRET="EJWU_h3jhQf4_ITipl1U7qbv5bRcRKK5x7QpHpT7_49VI0_BenOtdkjY5NRapo8D7g_PtZWqfsiBA5b7";
 //const MERCHANT_ID="B76W5U9HQVEFY";
 
 const base = "https://api.sandbox.paypal.com";
@@ -70,8 +71,6 @@ export async function createOrder(isVault, isReturning) {
     if (eval(isVault)) {
         requestBody["payment_source"] = payment_source;
     }
-
-
     console.log(JSON.stringify(requestBody, null, "  "));
     const response = await fetch(url, {
         method: "post",
@@ -79,7 +78,7 @@ export async function createOrder(isVault, isReturning) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
             "PayPal-Auth-Assertion":
-                "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9.",
+                "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiNDNENFpDWUM5TkQ0TCJ9.",
             "PayPal-Request-Id": paypal_request_id,
         },
         body: JSON.stringify(requestBody),
@@ -98,7 +97,7 @@ export async function capturePayment(orderId) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
             "PayPal-Auth-Assertion":
-                "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9.",
+                "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiNDNENFpDWUM5TkQ0TCJ9.",
         },
     });
 
