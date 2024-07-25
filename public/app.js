@@ -169,3 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setupApplepay().catch(console.error);
     }
 });
+
+
+console.log("Hello VConsole")

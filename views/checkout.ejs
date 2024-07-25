@@ -48,6 +48,8 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
             rel="stylesheet"
         />
+
+        <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
     </head>
     <body>
         <div class="container" style="overflow-x: auto; overflow-y: auto">
@@ -117,24 +119,20 @@
 
             <div id="result-createorder">
                 <p>Create Order Response body</p>
-                <pre
-                                      
-                    id="result-createorder-text"
-                >
-                </pre>
+                <pre id="result-createorder-text"></pre>
             </div>
 
             <div id="result-createorder">
                 <p>Capture Order Response body</p>
-                <pre
-                                     
-                    id="result-capture-text"
-                >
-                </pre>
+                <pre id="result-capture-text"></pre>
             </div>
 
             <div id="result-approveorder"></div>
         </div>
+        <script>
+            // VConsole will be exported to `window.VConsole` by default.
+            var vConsole = new window.VConsole();
+        </script>
         <script src="app.js"></script>
     </body>
 </html>
