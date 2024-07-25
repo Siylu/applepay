@@ -18,16 +18,7 @@ async function setupApplepay() {
     document.getElementById("btn-appl").addEventListener("click", onClick);
 
     async function onClick() {
-        console.log("读取Apple Pay属性...");
-        const applepay = paypal.Applepay();
-        const {
-            isEligible,
-            countryCode,
-            currencyCode,
-            merchantCapabilities,
-            supportedNetworks,
-        } = await applepay.config();
-        console.log("读取成功.");
+       
 
         console.log({
             merchantCapabilities,
@@ -38,6 +29,18 @@ async function setupApplepay() {
         const isAsync = document.getElementById("is-async").checked;
         let amount;
         if (isAsync) {
+            // console.log("读取Apple Pay属性...");
+            // var applepay = paypal.Applepay();
+            // var {
+            //     isEligible,
+            //     countryCode,
+            //     currencyCode,
+            //     merchantCapabilities,
+            //     supportedNetworks,
+            // } = await applepay.config();
+            // console.log("读取成功.");
+
+
             console.log("获取金额中...");
             amount = await fetch("/getAmount", {
                 method: "GET",
@@ -197,4 +200,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 console.log("Hello VConsole");
-console.log("version:", 3);
+console.log("version:", 4);
