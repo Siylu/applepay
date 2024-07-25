@@ -18,6 +18,7 @@ async function setupApplepay() {
     document.getElementById("btn-appl").addEventListener("click", onClick);
 
     async function onClick() {
+        console.log("获取金额中...");
         fetch("/getAmount", {
             method: "GET",
             headers: {
@@ -26,8 +27,8 @@ async function setupApplepay() {
         })
             .then((data) => data.json())
             .then((amount) => {
+                console.log("获取金额成功, 金额为:", amount);
 
-                
                 console.log({
                     merchantCapabilities,
                     currencyCode,
