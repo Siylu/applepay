@@ -19,6 +19,12 @@ async function setupApplepay() {
 
     async function onClick() {
         console.log({ merchantCapabilities, currencyCode, supportedNetworks });
+        const amount = await fetch("/getAmount", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
 
         const paymentRequest = {
             countryCode: "CN",
@@ -34,7 +40,7 @@ async function setupApplepay() {
             requiredShippingContactFields: [],
             total: {
                 label: "Demo (Card is not charged)",
-                amount: "10.00",
+                amount: amount,
                 type: "final",
             },
         };

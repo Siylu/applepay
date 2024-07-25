@@ -11,7 +11,7 @@ const base = "https://api.sandbox.paypal.com";
 
 // call the create order method
 export async function createOrder(isVault, isReturning) {
-  const purchaseAmount = "10.00"; // TODO: pull prices from a database
+  const purchaseAmount = "21.00"; // TODO: pull prices from a database
 
   const accessToken = await generateAccessToken(isVault);
   const url = `${base}/v2/checkout/orders`;
