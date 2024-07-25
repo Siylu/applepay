@@ -34,14 +34,23 @@ async function setupApplepay() {
             currencyCode,
             supportedNetworks,
         });
-        console.log("获取金额中...");
-        const amount = await fetch("/getAmount", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        console.log("获取金额成功, 金额为:", amount);
+
+        const isAsync = document.getElementById("is-async").checked;
+        let amount;
+        if (isAsync) {
+            console.log("获取金额中...");
+            amount = await fetch("/getAmount", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+                .then((data) => data.json())
+                .then((data) => data);
+            console.log("获取金额成功, 金额为:", amount);
+        } else {
+            amount = "21";
+        }
 
         const paymentRequest = {
             countryCode: "CN",
@@ -188,4 +197,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 console.log("Hello VConsole");
-console.log("version:", 2);
+console.log("version:", 3);
