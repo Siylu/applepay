@@ -66,7 +66,12 @@ async function setupApplepay() {
                 "email",
                 "postalAddress",
             ],
-            requiredShippingContactFields: [],
+            requiredShippingContactFields: [
+                "name",
+                "phone",
+                "email",
+                "postalAddress",
+            ],
             total: {
                 label: "Demo (Card is not charged)",
                 amount: amount,
