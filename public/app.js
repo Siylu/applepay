@@ -86,6 +86,7 @@ async function setupApplepay() {
             applepay
                 .validateMerchant({
                     validationUrl: event.validationURL,
+                    displayName:" my Store"
                 })
                 .then((payload) => {
                     session.completeMerchantValidation(payload.merchantSession);
@@ -146,7 +147,7 @@ async function setupApplepay() {
                     token: event.payment.token,
                     billingContact: event.payment.billingContact,
                     shippingContact: event.payment.shippingContact,
-                    email:event.payment.shippingContact.emailAddress,
+                    //email:event.payment.shippingContact.emailAddress,
                 });
                 debugger;
                 /*
