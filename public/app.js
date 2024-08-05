@@ -209,4 +209,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 console.log("Hello VConsole");
-console.log("version:", 4);
+alert("当前版本: 2024-08-05 [001]")
