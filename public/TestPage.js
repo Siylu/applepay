@@ -163,3 +163,14 @@ function onApplePayLoaded() {
             console.error("Error while fetching Apple Pay configuration.");
         });
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // eslint-disable-next-line no-undef
+    if (
+        ApplePaySession?.supportsVersion(4) &&
+        ApplePaySession?.canMakePayments()
+    ) {
+        onApplePayLoaded().catch(console.error);
+    }
+});
