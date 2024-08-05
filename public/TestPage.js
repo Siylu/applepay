@@ -105,7 +105,7 @@ function onApplePayLoaded() {
 
                             applepay
                                 .confirmOrder({
-                                    orderId: orderId,
+                                    orderId: id,
                                     token: event.payment.token,
                                     billingContact:
                                         event.payment.billingContact,
