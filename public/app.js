@@ -146,13 +146,13 @@ async function setupApplepay() {
                     token: event.payment.token,
                     billingContact: event.payment.billingContact,
                     shippingContact: event.payment.shippingContact,
-                    email:event.payment.shippingContact.emailAddress,
                 });
                 debugger;
                 /*
-                 * Capture order (must currently be made on server)
-                 */
-
+                * Capture order (must currently be made on server)
+                */
+               
+               // email:event.payment.shippingContact.emailAddress,
                 console.log(
                     event.payment.token,
                     event.payment.billingContact,
