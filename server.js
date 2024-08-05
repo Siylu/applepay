@@ -22,6 +22,18 @@ app.get("/", async (req, res) => {
     }
 });
 
+app.get("/TestPage", async (req, res) => {
+    const clientId = process.env.CLIENT_ID,
+        merchantId = process.env.MERCHANT_ID;
+    console.log(clientId);
+    try {
+        const clientToken = await paypal.generateClientToken();
+        res.render("TestPage", { clientId, clientToken, merchantId });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
 // create order
 app.post("/api/orders", async (req, res) => {
     // console.clear();
@@ -51,7 +63,7 @@ app.post("/api/orders/:orderID/capture", async (req, res) => {
 
 app.get("/getAmount", async (req, res) => {
     setTimeout(() => {
-      res.json("21")
+        res.json("21");
     }, 3000);
 });
 
