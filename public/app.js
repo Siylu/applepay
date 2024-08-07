@@ -155,12 +155,12 @@ async function setupApplepay() {
                 */
                
                // email:event.payment.shippingContact.emailAddress,
-                console.log(
-                    event.payment.token,
-                    event.payment.billingContact,
-                    event.payment.shippingContact,
-                    event.payment.shippingContact.emailAddress
-                );
+                // console.log(
+                //     event.payment.token,
+                //     event.payment.billingContact,
+                //     event.payment.shippingContact,
+                //     event.payment.shippingContact.emailAddress
+                // );
 
                 if (!eval(isReturning)) {
                     /*
