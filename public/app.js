@@ -60,12 +60,12 @@ async function setupApplepay() {
             currencyCode: "USD",
             merchantCapabilities,
             supportedNetworks,
-            // requiredBillingContactFields: [
-            //     "name",
-            //     "phone",
-            //     "email",
-            //     "postalAddress",
-            // ],
+            requiredBillingContactFields: [
+                "name",
+                "phone",
+                "email",
+                "postalAddress",
+            ],
             // requiredShippingContactFields: [
             //     "name",
             //     "phone",
@@ -145,7 +145,7 @@ async function setupApplepay() {
                 await applepay.confirmOrder({
                     orderId: id,
                     token: event.payment.token,
-                    //billingContact: event.payment.billingContact,
+                    billingContact: event.payment.billingContact,
                     //shippingContact: event.payment.shippingContact,
                     //email:event.payment.shippingContact.emailAddress,
                 });
