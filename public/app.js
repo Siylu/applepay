@@ -60,18 +60,18 @@ async function setupApplepay() {
             currencyCode: "USD",
             merchantCapabilities,
             supportedNetworks,
-            requiredBillingContactFields: [
-                "name",
-                "phone",
-                "email",
-                "postalAddress",
-            ],
-            requiredShippingContactFields: [
-                "name",
-                "phone",
-                "email",
-                "postalAddress",
-            ],
+            // requiredBillingContactFields: [
+            //     "name",
+            //     "phone",
+            //     "email",
+            //     "postalAddress",
+            // ],
+            // requiredShippingContactFields: [
+            //     "name",
+            //     "phone",
+            //     "email",
+            //     "postalAddress",
+            // ],
             total: {
                 label: "Demo (Card is not charged)",
                 amount: amount,
@@ -145,8 +145,8 @@ async function setupApplepay() {
                 await applepay.confirmOrder({
                     orderId: id,
                     token: event.payment.token,
-                    billingContact: event.payment.billingContact,
-                    shippingContact: event.payment.shippingContact,
+                    //billingContact: event.payment.billingContact,
+                    //shippingContact: event.payment.shippingContact,
                     //email:event.payment.shippingContact.emailAddress,
                 });
                 debugger;
