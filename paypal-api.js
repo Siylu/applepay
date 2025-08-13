@@ -88,7 +88,7 @@ export async function createOrder(isVault, isReturning) {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
-      "PayPal-Auth-Assertion": "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBWktoeEVRWG1xYTU1ckV0N09hLXNZWDU3SkJWd01JSFhmME1vNS05SElxSDMzSUs4UWxiWlJtYWZhVEI0NWh0UWg0aUVPX3lURlhDeVN6XyIsImVtYWlsIjoidGVzdEluU2VsbGVyM0BwYXlwYWwuY29tIn0=.",
+      "PayPal-Auth-Assertion": "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBWktoeEVRWG1xYTU1ckV0N09hLXNZWDU3SkJWd01JSFhmME1vNS05SElxSDMzSUs4UWxiWlJtYWZhVEI0NWh0UWg0aUVPX3lURlhDeVN6XyIsImVtYWlsIjoidGVzdEluU2VsbGVyNUBwYXlwYWwuY29tIn0=.",
       "PayPal-Request-Id": paypal_request_id,
     },
     body: JSON.stringify(requestBody),
@@ -106,7 +106,7 @@ export async function capturePayment(orderId) {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
-      "PayPal-Auth-Assertion": "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBWktoeEVRWG1xYTU1ckV0N09hLXNZWDU3SkJWd01JSFhmME1vNS05SElxSDMzSUs4UWxiWlJtYWZhVEI0NWh0UWg0aUVPX3lURlhDeVN6XyIsImVtYWlsIjoidGVzdEluU2VsbGVyM0BwYXlwYWwuY29tIn0=.",
+      "PayPal-Auth-Assertion": "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBWktoeEVRWG1xYTU1ckV0N09hLXNZWDU3SkJWd01JSFhmME1vNS05SElxSDMzSUs4UWxiWlJtYWZhVEI0NWh0UWg0aUVPX3lURlhDeVN6XyIsImVtYWlsIjoidGVzdEluU2VsbGVyNUBwYXlwYWwuY29tIn0=.",
     },
   });
 
