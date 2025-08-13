@@ -51,17 +51,17 @@ export async function createOrder(isVault, isReturning) {
           currency_code: "USD",
           value: purchaseAmount,
         },
-        "payment_instruction": {
-          "platform_fees": [
-            {
-              "amount": {
-                "currency_code": "USD",
-                "value": "1.00"
-              }
+        // "payment_instruction": {
+        //   "platform_fees": [
+        //     {
+        //       "amount": {
+        //         "currency_code": "USD",
+        //         "value": "1.00"
+        //       }
 
-            }
-          ]
-        },
+        //     }
+        //   ]
+        // },
         shipping: {
           name: {
             full_name: "John doc",
@@ -93,7 +93,7 @@ export async function createOrder(isVault, isReturning) {
     },
     body: JSON.stringify(requestBody),
   });
-
+console.log(JSON.stringify(response, null, "  "));
   return handleResponse(response);
 }
 
