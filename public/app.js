@@ -66,12 +66,12 @@ async function setupApplepay() {
                 "email",
                 "postalAddress",
             ],
-            // requiredShippingContactFields: [
-            //     "name",
-            //     "phone",
-            //     "email",
-            //     "postalAddress",
-            // ],
+            requiredShippingContactFields: [
+                "name",
+                "phone",
+                "email",
+                "postalAddress",
+            ],
             total: {
                 label: "Demo (Card is not charged)",
                 amount: amount,
@@ -146,8 +146,8 @@ async function setupApplepay() {
                     orderId: id,
                     token: event.payment.token,
                     billingContact: event.payment.billingContact,
-                    //shippingContact: event.payment.shippingContact,
-                    //email:event.payment.shippingContact.emailAddress,
+                    shippingContact: event.payment.shippingContact,
+                    email:event.payment.shippingContact.emailAddress,
                 });
                 debugger;
                 /*
