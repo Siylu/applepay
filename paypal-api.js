@@ -51,17 +51,17 @@ export async function createOrder(isVault, isReturning) {
           currency_code: "USD",
           value: purchaseAmount,
         },
-        "payment_instruction": {
-          "platform_fees": [
-            {
-              "amount": {
-                "currency_code": "USD",
-                "value": "1.00"
-              }
+        // "payment_instruction": {
+        //   "platform_fees": [
+        //     {
+        //       "amount": {
+        //         "currency_code": "USD",
+        //         "value": "1.00"
+        //       }
 
-            }
-          ]
-        },
+        //     }
+        //   ]
+        // },
         shipping: {
           name: {
             full_name: "John doc",
@@ -88,12 +88,12 @@ export async function createOrder(isVault, isReturning) {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
-      "PayPal-Auth-Assertion": "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9.",
+      "PayPal-Auth-Assertion": "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBWktoeEVRWG1xYTU1ckV0N09hLXNZWDU3SkJWd01JSFhmME1vNS05SElxSDMzSUs4UWxiWlJtYWZhVEI0NWh0UWg0aUVPX3lURlhDeVN6XyIsImVtYWlsIjoidGVzdEluU2VsbGVyNUBwYXlwYWwuY29tIn0=.",
       "PayPal-Request-Id": paypal_request_id,
     },
     body: JSON.stringify(requestBody),
   });
-
+console.log(JSON.stringify(response, null, "  "));
   return handleResponse(response);
 }
 
@@ -106,7 +106,7 @@ export async function capturePayment(orderId) {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
-      "PayPal-Auth-Assertion": "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBV0FzYnVNS25XXzFLRU81OEdnRzJxamJnOW1ZRGI5RUlOT3J3SXI2Y3NTdTF5a0RaWEJ6cS14RWMzbFhiMzdVSDBxRzkxN1d0dkloUHZueSIsInBheWVyX2lkIjoiODVaQlVGSzJNS0RTSiJ9.",
+      "PayPal-Auth-Assertion": "eyJhbGciOiJub25lIn0=.eyJpc3MiOiJBWktoeEVRWG1xYTU1ckV0N09hLXNZWDU3SkJWd01JSFhmME1vNS05SElxSDMzSUs4UWxiWlJtYWZhVEI0NWh0UWg0aUVPX3lURlhDeVN6XyIsImVtYWlsIjoidGVzdEluU2VsbGVyNUBwYXlwYWwuY29tIn0=.",
     },
   });
 
